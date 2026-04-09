@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myservice-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: myservice
+  template:
+    metadata:
+      labels:
+        app: myservice
+    spec:
+      containers:
+        - image: loentq/my-service-java-rest:v2
+          imagePullPolicy: IfNotPresent
+          name: myservice-container
+      restartPolicy: Always
